@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="account">
+		
+	<insert id="addAccount" parameterType="java.util.HashMap">
+		insert into account values(#{id}, #{pass} , #{name}, #{gender})
+	</insert>
+				
+	<select id="isUsed" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select id from account where id like #{word}
+	</select>
+	
+	<select id="getId" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select id from account where id =#{id} 
+	</select>
+	
+	<select id="getUserPw" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select pass from account where id=#{id} 
+	</select>
+	
+	<select id="getLoginInfo" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select id,pass from account where id=#{id} 
+	</select>
+	
+	
+</mapper>
