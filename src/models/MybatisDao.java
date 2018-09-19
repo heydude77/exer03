@@ -29,7 +29,10 @@ public class MybatisDao extends Dao{
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			sql.close();
 		}	
+		
 	}
 	
 	public boolean getUserPw(String pw) {
@@ -43,7 +46,9 @@ public class MybatisDao extends Dao{
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		}	
+		} finally {
+			sql.close();
+		}
 	}
 	
 	public boolean loginCheck(Map m) {
@@ -63,6 +68,8 @@ public class MybatisDao extends Dao{
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			sql.close();
 		}	
 	}
 	
@@ -74,6 +81,8 @@ public class MybatisDao extends Dao{
 				sql.commit();
 		}catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			sql.close();
 		}
 	}	
 	

@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MVC</title>
 <link rel="stylesheet" href="<%=application.getContextPath()%>/css/style.css" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 	<div align="center">
@@ -23,6 +24,10 @@
 			<form action="<%=application.getContextPath() %>/search.do">
 				<input type="text" style="width:98%;" placeholder="search keyword"/>
 			</form>
+		</div>
+		<div style="text-align: center;">
+			<a href="<%=application.getContextPath()%>/trend.do">
+			<button class="w2-button w3-round w3-black">토론배틀</button></a>	
 		</div>
 		<div style="margin-right: 10%; margin-left: 10%;" align="left">
 			<h3>최근 등록된 새로운 이슈 !</h3>

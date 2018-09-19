@@ -26,11 +26,11 @@
 			</p>
 			<p>
 				<b>비밀번호(*)</b><br/>	
-				<input type="password" name="pw" placeholder="account pass" style="width: 99%;"/>
+				<input type="password" name="pw" placeholder="account pass" style="width: 99%;" id="pw"/>
 			</p>
 			<p>
 				<b>비밀번호 재확인(*)</b><br/>	
-				<input type="password" name="pwconfirm" placeholder="confirm pass" style="width: 99%;"/>
+				<input type="password" name="pwconfirm" placeholder="confirm pass" style="width: 99%;" id="pwConfirm"/><span></span>
 			</p>
 			<p>
 				<b>이름(*)</b><br/>	
@@ -70,6 +70,15 @@
 			}
 			req.send();
 		};
+		
+		document.getElementById("pwConfirm").onchange = function() {
+			var pw = document.getElementById("pw").value;
+			var pwConfirm = document.getElementById("pwConfirm").value;
+			if(pw != pwConfirm){
+				document.getElementsByTagName("span")[1].innerHTML = "비밀번호가 일치하지 않습니다."
+				document.getElementsByTagName("span")[1].style.color = "red";
+			}
+		}; 
 	</script>
 </body>
 </html>

@@ -27,7 +27,7 @@ public class IndexController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		if(session.getAttribute("auth") == null) {
-			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/login.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/guest.jsp");
 			/*
 			 *  MVC 구축시 response 를 전송하기 위해서 설계하는 jsp 파일은 WebContent 바로 아래 보다는 
 			 *  WEB-INF 안으로 설계를 해두는 편이다.
@@ -42,3 +42,4 @@ public class IndexController extends HttpServlet {
 		}
 	}
 }
+

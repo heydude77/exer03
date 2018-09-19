@@ -30,13 +30,15 @@ public class JoinController extends HttpServlet{
 		String name = req.getParameter("name");
 		String gender = req.getParameter("gender");
 	
+	
+		MybatisDao mdao = new MybatisDao();		
 		Map<String, String> map = new HashMap<>();
 			map.put("id", id);
 			map.put("pass", pw);
 			map.put("name", name);
 			map.put("gender", gender);
 		
-		MybatisDao mdao = new MybatisDao();
+		
 		
 		mdao.addAccount(map);
 		

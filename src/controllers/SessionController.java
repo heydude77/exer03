@@ -18,6 +18,11 @@ import models.MybatisDao;
 public class SessionController extends HttpServlet {
 	
 	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendRedirect(req.getContextPath()+"/login.do");
+	}
+	
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 		String pass = req.getParameter("pass");
@@ -30,8 +35,7 @@ public class SessionController extends HttpServlet {
 			HttpSession session = req.getSession();
 			session.setAttribute("auth", true);
 			session.setAttribute("userId", id);
-			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/home.jsp");
-			rd.forward(req, resp);
+			resp.sendRedirect(req.getContextPath()+ "/index.do");
 		}else {
 			req.setAttribute("loginError", true);  
 			
