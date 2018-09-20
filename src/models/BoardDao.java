@@ -48,7 +48,7 @@ public class BoardDao extends Dao{
 			sql.close();
 		}
 	}
-
+	
 	public List<Map> getAllIssue() {
 		SqlSession sql = factory.openSession(); 
 		try {			
@@ -61,6 +61,20 @@ public class BoardDao extends Dao{
 			sql.close();
 		}
 	}
+	
+	public Map getIssue (Number n) {
+		SqlSession sql = factory.openSession(); 
+		try {
+			Map p = sql.selectOne("board.getIssue", n);
+			return p;
+		} catch (Exception e) {
+			e.printStackTrace();	
+			return null;	
+		} finally {
+			sql.close();
+		}		
+	}
+	
 	public List<Map> getAllOpinion() {
 		SqlSession sql = factory.openSession(); 
 		try {			
@@ -73,19 +87,7 @@ public class BoardDao extends Dao{
 			sql.close();
 		}
 	}
-	public List<Map> getAllOpinionByNo(String no) {
-		SqlSession sql = factory.openSession(); 
-		try {			
-			List<Map> p = sql.selectList("board.getAllOpinionByNo", no);
-			return p;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}finally {
-			sql.close();
-		}
-	}	
-	
+		
 	public boolean getId(String id) {
 		SqlSession sql = factory.openSession(); 
 		try {
@@ -101,6 +103,19 @@ public class BoardDao extends Dao{
 			sql.close();
 		}	
 		
+	}
+
+	public List<Map> getOpinionByINO (Number n) {
+		SqlSession sql = factory.openSession(); 
+		try {
+			List<Map> p = sql.selectList("board.getOpinionByNo", n);
+			return p;
+		} catch (Exception e) {
+			e.printStackTrace();	
+			return null;	
+		} finally {
+			sql.close();
+		}		
 	}
 	
 	

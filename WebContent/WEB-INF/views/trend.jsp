@@ -5,7 +5,9 @@
 	String user = (String)session.getAttribute("userId");
 	
 	List<Map> issueList = (List<Map>)request.getAttribute("issueList");
-		
+	List<Map> opinion = (List<Map>)request.getAttribute("opinion");
+	
+	//String title = content.substring(0, content.indexOf("\n"));
 	//Map issueTotal = (Map)request.getAttribute("opinionTotalByIssueNo");
 %>
 <!DOCTYPE html>
@@ -41,20 +43,55 @@
 		
 		<div style="margin-right: 10%; margin-left: 10%; text-align: left">
 			<%for (int i=0; i<issueList.size(); i++) {%>
-			<div style="background-color: #EAEAEA; padding: 7px; margin-bottom: 5px;">
+			
+			<div style="background-color: #EAEAEA; padding: 7px; margin-bottom: 5px;"
+			onmouseenter="highlight(this, true);" onmouseleave="highlight(this, false)">
 				<p style="text-align: right; color: gray; font-size: small;" >
 					<%=issueList.get(i).get("CATE")%> / 
-					000 의견 /
+					<% 
+						Number issueNum = (Number)issueList.get(i).get("NO");
+						int totalOpinion =0;
+						for (int j=0; j<opinion.size(); j++){
+							if(opinion.get(j).get("INO").equals(issueNum)){
+									totalOpinion +=1;		
+							}
+						}					
+						
+					%>
+					<%=totalOpinion%> 의견 /
 					<%=issueList.get(i).get("REGDATE")%>
 				</p>			
 				<p>
-					<a href=""><b>ISSUE.</b> <%=issueList.get(i).get("CONTENT")%> </a>
+					<%
+						String content = (String)issueList.get(i).get("CONTENT");
+						String title = "";
+						if(content.indexOf("\n") ==-1) {
+							title = content;
+						} else {
+							title = content.substring(0, content.indexOf("\n"));	
+						}
+						 
+					%>
+					<b>ISSUE.</b>
+					 <a href="<%=application.getContextPath()%>/detail.do?no=<%=issueList.get(i).get("NO")%>">
+					 <%=title%></a>
 				</p>
 				
 			</div>
+			
 				
 			<%} %>
 		</div>
 	</div>
+	<script>
+			var highlight = function(t, e){
+				if(e)
+					t.style.background ="Silver";
+				else
+					t.style.background ="Azure";
+			}
+		
+		
+	</script>
 </body>
 </html>

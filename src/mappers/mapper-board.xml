@@ -15,12 +15,17 @@
 		select * from Issue order by no desc
 	</select>
    
-   	<select id="getAllOpinionByNo" resultType="java.util.HashMap" parameterType="java.lang.String">
-		select * from Opinion order by no desc where ino=#{ino}
+   	<select id="getOpinionByNo" resultType="java.util.HashMap" parameterType="java.lang.Number">
+		select * from Opinion where ino=#{ino}
 	</select>	
 	
 	<select id="getAllOpinion" resultType="java.util.HashMap" >
 		select * from Opinion order by no desc
 	</select>
+	
+	<select id="getIssue" resultType="java.util.HashMap" parameterType="java.lang.Number">
+		select * from Issue where no=#{no}		
+	</select>	
+		
 	
 </mapper>

@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,25 +14,15 @@ import javax.servlet.http.HttpSession;
 
 import models.BoardDao;
 
-@WebServlet("/trend.do")
-public class TrendController extends HttpServlet {
-	
+
+@WebServlet("/logout.do")
+public class LogoutController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		
-		BoardDao bdao = new BoardDao();
-		List<Map> issueList = bdao.getAllIssue();
-		List<Map> opinion = bdao.getAllOpinion();
-	
-		req.setAttribute("opinion", opinion);
-		req.setAttribute("issueList",issueList);
-		//req.setAttribute("opinionTotalByIssueNo",totalOpinion);
+		session.removeAttribute("auth");
 		
-		
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/trend.jsp");
-		rd.forward(req, resp);
+		resp.sendRedirect(req.getContextPath()+"/index.do");
 	}
-		
 }
-	

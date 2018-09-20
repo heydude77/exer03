@@ -20,8 +20,7 @@ public class IndexController extends HttpServlet {
 	 * 
 	 * 	이 세개중에 하나를 이용해서 구현해두면 된다
 	 * 
-	 */
-	
+	 */	
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
